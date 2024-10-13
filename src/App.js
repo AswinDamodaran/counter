@@ -1,26 +1,33 @@
-import { useState } from 'react';
+import { Component, useState } from 'react';
 import './App.css';
 
-function App() {
-
-  const [count,setCount]=useState(0)
-
-  const handleincrement=()=>{
-    setCount((prev)=> prev+1)
+class App extends Component{
+  constructor(props){
+    super(props)
+    this.state={
+      count:0
+    }
   }
 
-  const handledecrement=()=>{
-    setCount((prev)=> prev-1)
+  handleIncrement=()=>{
+    this.setState((prev)=> ({count: prev.count+1}))
+  }
+  handleDecrement=()=>{
+    this.setState((prev)=> ({count: prev.count-1}))
+  }
+  render(){
+    return(
+      <div>
+        <h1>
+          Counter App
+        </h1>
+        <p>Count: {this.state.count}</p>
+        <button onClick={this.handleIncrement}>Increment</button>
+        <button onClick={this.handleDecrement}>Decrement</button>
+      </div>
+    )
   }
 
-  return (
-    <div className="App">
-      <h1>Counter App</h1>
-      <p>Count: {count}</p>
-      <button onClick={handleincrement} >Increment</button>
-      <button onClick={handledecrement} >Decrement</button>
-    </div>
-  );
 }
 
 export default App;
